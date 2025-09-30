@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Smart Study Planner</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>📖 Smart Study Planner</h1>
+      <div style="margin-left:auto;color:var(--muted)">
+        Focus Mode · Local Save · Reminders
+      </div>
+    </header>
+
+    <!-- Planner at top -->
+    <div class="card">
+      <form id="taskForm">
+        <label>Title
+          <input id="title" type="text" required placeholder="e.g. Revise Calculus chapter 3" />
+        </label>
+        <label>Description
+          <textarea id="desc" rows="3" placeholder="Brief notes or topics to cover"></textarea>
+        </label>
+        <label>Due Date & Time
+          <input id="due" type="datetime-local" required />
+        </label>
+        <label>Estimated Hours
+          <input id="hours" type="number" min="0" step="0.5" placeholder="e.g. 2" />
+        </label>
+        <label>Priority
+          <select id="priority">
+            <option value="low">Low</option>
+            <option value="med" selected>Medium</option>
+            <option value="high">High</option>
+          </select>
+        </label>
+        <label>Reminder (minutes before due)
+          <input id="reminder" type="number" min="0" step="1" value="30" />
+        </label>
+
+        <div style="display:flex;gap:10px;margin-top:8px">
+          <button class="primary" id="saveBtn">Add Task</button>
+          <button type="button" id="clearBtn">Clear</button>
+        </div>
+        <input type="hidden" id="editingId" />
+      </form>
+
+      <div style="margin-top:10px" class="small">
+        💡 Allow browser notifications to receive reminders. Tasks are saved in your browser's Local Storage.
+      </div>
+    </div>
+
+    <!-- Tasks below planner -->
+    <div class="card">
+      <div class="tasks-header">
+        <div class="controls">
+          <input id="search" type="text" placeholder="Search tasks..."
+            style="padding:8px;border-radius:8px;background:rgba(255,255,255,0.05);
+            border:1px solid rgba(255,255,255,0.08);color:inherit" />
+        </div>
+        <div class="filters">
+          <button id="allFilter">All</button>
+          <button id="todayFilter">Today</button>
+          <button id="upcomingFilter">Upcoming</button>
+          <button id="doneFilter">Completed</button>
+        </div>
+      </div>
+
+      <div id="list" class="list"></div>
+
+      <div class="timeline" id="timeline">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div class="small">Timeline (time-progress toward due date)</div>
+          <div class="small" id="nowTag"></div>
+        </div>
+        <div id="timelineRows" style="margin-top:10px;display:flex;flex-direction:column;gap:10px"></div>
+      </div>
+
+      <footer id="status">No tasks yet — add your first study goal.</footer>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
