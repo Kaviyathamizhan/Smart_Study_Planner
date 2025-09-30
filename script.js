@@ -1,7 +1,5 @@
-// === Smart Study Planner JS ===
 const STORAGE_KEY = 'smart.study.planner.v1';
 
-// Elements
 const taskForm = document.getElementById('taskForm');
 const title = document.getElementById('title');
 const desc = document.getElementById('desc');
@@ -22,28 +20,24 @@ const timelineRows = document.getElementById('timelineRows');
 const nowTag = document.getElementById('nowTag');
 const editingId = document.getElementById('editingId');
 
-// In-memory tasks
 let tasks = loadTasks();
 let currentFilter = 'all';
 
-// Init
 render();
 requestNotificationPermission();
-setInterval(checkReminders, 20*1000); // check reminders
-setInterval(renderTimeline, 60*1000); // update timeline
+setInterval(checkReminders, 20*1000); 
+setInterval(renderTimeline, 60*1000); 
 
-// Helpers
 function uid(){ return 't_'+Math.random().toString(36).slice(2,9); }
 function saveTasks(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks)); }
 function loadTasks(){ try{ const raw = localStorage.getItem(STORAGE_KEY); return raw ? JSON.parse(raw) : [] }catch(e){ console.error(e); return [] } }
 function humanDate(dt){ if(!dt) return '—'; const d = new Date(dt); return d.toLocaleString(); }
 function isToday(dt){ if(!dt) return false; const d = new Date(dt); const n = new Date(); return d.getFullYear()===n.getFullYear() && d.getMonth()===n.getMonth() && d.getDate()===n.getDate(); }
 
-// Notifications
 async function requestNotificationPermission(){
   if(!('Notification' in window)) return;
   if(Notification.permission === 'default') {
-    try { await Notification.requestPermission(); } catch(e) { /* ignore */ }
+    try { await Notification.requestPermission(); } catch(e) {  }
   }
 }
 
@@ -73,7 +67,6 @@ function fireReminder(task){
   }
 }
 
-// CRUD
 taskForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const id = editingId.value;
@@ -155,7 +148,6 @@ function editTask(id){
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Render + Filters
 search.addEventListener('input', render);
 allFilter.addEventListener('click', ()=>{ currentFilter='all'; render(); });
 todayFilter.addEventListener('click', ()=>{ currentFilter='today'; render(); });
@@ -278,7 +270,7 @@ function renderTimeline(){
   });
 }
 
-// Utilities
 function escapeHtml(s){
   return (s||'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
+
