@@ -3,7 +3,7 @@
 
 A browser-based study planner to help students organize tasks, track deadlines, and stay focused.
 
-Features
+Features:
 
 Add, edit, delete, and complete tasks
 
@@ -19,11 +19,11 @@ Offline storage using Local Storage
 
 Calm, distraction-free interface
 
-Technologies
+Technologies:
 
 HTML | CSS | JavaScript | Local Storage | Notification API
 
-Usage
+Usage:
 
 Open index.html in a modern browser.
 
@@ -33,7 +33,7 @@ Allow browser notifications to receive reminders.
 
 Track progress and deadlines visually.
 
-Future Enhancements
+Future Enhancements:
 
 Sync across devices
 
