@@ -40,3 +40,4 @@ Sync across devices
 Dark/Light theme
 
 Task categories and analytics dashboard
+<img width="1888" height="839" alt="Image" src="https://github.com/user-attachments/assets/0931d936-db58-402c-8f80-68dd82ebfd91" />
